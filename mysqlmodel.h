@@ -2,6 +2,7 @@
 #define MYSQLMODEL_H
 
 #include <QSqlQueryModel>
+//#include <QSqlTableModel>
 
 class MySqlModel : public QSqlQueryModel
 {
@@ -22,6 +23,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
 
     MySqlModel* model();
+    MySqlModel* updateModel();
 
 protected:
     static void createConnection();

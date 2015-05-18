@@ -108,6 +108,8 @@ bool MySqlModel::initialize()
 //        return false;
 //    }
 
+    model();
+
     return true;
 }
 
@@ -173,6 +175,11 @@ MySqlModel* MySqlModel::model()
     var0 = record(0).value(0); //Invalid
     var1 = record(0).value(1); //Invalid
 
+    return this;
+}
+
+MySqlModel* MySqlModel::updateModel()
+{
     return this;
 }
 

@@ -12,8 +12,8 @@ public:
     MyCppClass();
     ~MyCppClass();
 
-    Q_INVOKABLE QObject* model();
     Q_INVOKABLE void remove(const int idx);
+    Q_INVOKABLE QObject* updateModel();
 
 private:
     MySqlModel *mySqlModel;

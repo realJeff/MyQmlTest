@@ -38,12 +38,15 @@ Rectangle {
                     TableViewColumn{ role: "name"; title: "Name"}
                     TableViewColumn{ role: "author"; title: "Author"}
                     TableViewColumn{ role: "year"; title: "Year"}
-                    model:myCppClass.model()
+                    model:myCppClass.updateModel()
                 }
 
                 Button{
                     text: "Delete"
-                    onClicked: myCppClass.remove(tableView.currentRow)
+                    onClicked: {
+                        myCppClass.remove(tableView.currentRow);
+                        tableView.model = myCppClass.updateModel();
+                    }
                 }
             }
         }
