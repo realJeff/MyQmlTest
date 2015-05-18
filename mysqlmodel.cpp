@@ -27,27 +27,49 @@ QHash<int, QByteArray> MySqlModel::roleNames() const
     return roles;
 }
 
+//QVariant MySqlModel::data(const QModelIndex &index, int role) const
+//{
+//    if (!index.isValid())
+//        return QVariant();
+
+//    QString fieldName;
+//    switch (role) {
+//        case Id: fieldName = QStringLiteral("id"); break;
+//        case Name: fieldName = QStringLiteral("name"); break;
+//        case Author: fieldName = QStringLiteral("author"); break;
+//        case Year: fieldName = QStringLiteral("year"); break;
+//     }
+//    if (!this->record().isGenerated(fieldName))
+//        return QVariant();
+//    else {
+//        QModelIndex item = indexInQuery(index);
+//        if ( !this->query().seek(item.row()) )
+//            return QVariant();
+//        return this->query().value(fieldName);
+//    }
+//    return QVariant();
+//}
+
 QVariant MySqlModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
 
-    QString fieldName;
-    switch (role) {
-        case Id: fieldName = QStringLiteral("id"); break;
-        case Name: fieldName = QStringLiteral("name"); break;
-        case Author: fieldName = QStringLiteral("author"); break;
-        case Year: fieldName = QStringLiteral("year"); break;
-     }
-    if (!this->record().isGenerated(fieldName))
-        return QVariant();
-    else {
-        QModelIndex item = indexInQuery(index);
-        if ( !this->query().seek(item.row()) )
-            return QVariant();
-        return this->query().value(fieldName);
+    switch(role) {
+        case Id: {
+            return record(index.row()).value(0).toString();
+        }
+        case Name : {
+            return record(index.row()).value(1).toString();
+        }
+        case Author : {
+            return record(index.row()).value(2).toString();
+        }
+        case Year : {
+            return record(index.row()).value(3).toString();
+        }
     }
-    return QVariant();
+    return QSqlQueryModel::data(index, role);
 }
 
 bool MySqlModel::initialize()
