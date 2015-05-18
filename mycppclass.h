@@ -13,6 +13,7 @@ public:
     ~MyCppClass();
 
     Q_INVOKABLE QObject* model();
+    Q_INVOKABLE void remove(const int idx);
 
 private:
     MySqlModel *mySqlModel;

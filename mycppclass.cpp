@@ -15,3 +15,8 @@ QObject* MyCppClass::model()
 {
     return mySqlModel->model();
 }
+
+void MyCppClass::remove(const int idx)
+{
+    mySqlModel->removeRow(idx);
+}

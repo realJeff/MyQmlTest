@@ -3,7 +3,17 @@ import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.1
 
 
-ScrollView {
+//TableView{
+//    id: tableView
+//    width: 700
+//    TableViewColumn{ role: "id"; title: "Id"}
+//    TableViewColumn{ role: "name"; title: "Name"}
+//    TableViewColumn{ role: "author"; title: "Author"}
+//    TableViewColumn{ role: "year"; title: "Year"}
+//    model:myCppClass.model()
+//}
+
+Rectangle {
     id:page
     width: 800
     height: 600
@@ -23,7 +33,7 @@ ScrollView {
                 anchors.fill: parent
                 TableView{
                     id: tableView
-                    width: 200
+                    width: 700
                     TableViewColumn{ role: "id"; title: "Id"}
                     TableViewColumn{ role: "name"; title: "Name"}
                     TableViewColumn{ role: "author"; title: "Author"}
@@ -33,6 +43,7 @@ ScrollView {
 
                 Button{
                     text: "Delete"
+                    onClicked: myCppClass.remove(tableView.currentRow)
                 }
             }
         }
