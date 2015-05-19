@@ -13,7 +13,10 @@ MyCppClass::~MyCppClass()
 
 void MyCppClass::remove(const int idx)
 {
-    mySqlModel->removeRow(idx);
+//    int c = mySqlModel->rowCount();
+    bool b = mySqlModel->removeRow(idx);
+    mySqlModel->select();
+//    c = mySqlModel->rowCount();
 }
 
 QObject* MyCppClass::updateModel()

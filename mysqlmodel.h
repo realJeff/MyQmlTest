@@ -1,10 +1,10 @@
 #ifndef MYSQLMODEL_H
 #define MYSQLMODEL_H
 
-#include <QSqlQueryModel>
-//#include <QSqlTableModel>
+//#include <QSqlQueryModel>
+#include <QSqlTableModel>
 
-class MySqlModel : public QSqlQueryModel
+class MySqlModel : public QSqlTableModel
 {
 public:
     MySqlModel(QObject *parent = 0);

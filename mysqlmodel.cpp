@@ -6,7 +6,7 @@
 
 QSqlDatabase MySqlModel::m_db;
 
-MySqlModel::MySqlModel(QObject *parent) : QSqlQueryModel(parent)
+MySqlModel::MySqlModel(QObject *parent) : QSqlTableModel(parent)
 {
     createConnection();
 }
@@ -75,7 +75,7 @@ QVariant MySqlModel::data(const QModelIndex &index, int role) const
 bool MySqlModel::initialize()
 {
      QSqlQuery query;
-     bool bExe = false;
+     bool bExe = false;    
 
     //Judge whether the table exists.
     if(!m_db.tables().contains("Book"))
@@ -99,6 +99,8 @@ bool MySqlModel::initialize()
             return false;
         }
     }
+
+    setTable("Book");
 
 //    query.prepare("INSERT INTO Book (name,author,year) VALUES (?,?,?)");
 
@@ -131,6 +133,7 @@ bool MySqlModel::initialize()
 //    }
 
     model();
+
 
     return true;
 }
@@ -178,7 +181,7 @@ MySqlModel* MySqlModel::model()
     QString strQuery("SELECT * FROM Book");
 
     //method1
-    setQuery(strQuery);
+    setQuery(QSqlQuery(strQuery));
     var0 = record(0).value(0); //Invalid
     var1 = record(0).value(1); //Invalid
 
